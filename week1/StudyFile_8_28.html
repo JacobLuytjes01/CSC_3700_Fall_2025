@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const car = {
+            brand: 'honda',
+            color: 'grey',
+        };
+        const car2 = {
+            brand: 'toyota',
+            color: 'grey',
+        };
+        const carlist = [car, car2];
+        function test(list) {
+            console.log(list);
+            return list.filter(item => item.brand !== 'honda')
+        }
+        console.log(test(carlist));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

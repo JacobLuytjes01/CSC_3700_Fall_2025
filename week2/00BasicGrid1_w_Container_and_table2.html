@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Books 4 U </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .container1 {
+            background-color: yellow;
+        }
+
+        .container2 {
+            background-color: palegreen;
+        }
+    </style>
+    <script>
+        const booksData = [
+            {
+                id: 1,
+                title: "American Prometheus",
+                author: "Kai Bird & Martin J. Sherwin",
+                pages: 721,
+                bookType: "non-fiction",
+                year: 2005
+            },
+            {
+                id: 2,
+                title: "Educated",
+                author: "Tara Westover",
+                pages: 334,
+                bookType: "non-fiction",
+                year: 2018
+            },
+            {
+                id: 3,
+                title: "The Lord of the Rings",
+                author: "J.R.R. Tolkien",
+                pages: 1216,
+                bookType: "fiction",
+                year: 1954
+            },
+            {
+                id: 4,
+                title: "The Return of the King",
+                author: "J.R.R. Tolkien",
+                pages: 1216,
+                bookType: "fiction",
+                year: 1956
+            }
+        ];
+        const donutData = [
+            {
+                "name": "Glazed Classic",
+                "price": 1.99,
+                "description": "A classic glazed donut with a sweet, shiny coating.",
+                "toppings": ["glaze"]
+            },
+            {
+                "name": "Chocolate Frosted",
+                "price": 2.49,
+                "description": "Soft donut topped with rich chocolate frosting.",
+                "toppings": ["chocolate frosting"]
+            },
+            {
+                "name": "Strawberry Sprinkle",
+                "price": 2.79,
+                "description": "Fresh strawberry-flavored donut topped with colorful sprinkles.",
+                "toppings": ["strawberry glaze", "sprinkles"]
+            },
+            {
+                "name": "Boston Cream",
+                "price": 3.19,
+                "description": "Filled with creamy custard and topped with chocolate icing.",
+                "toppings": ["custard filling", "chocolate icing"]
+            },
+            {
+                "name": "Maple Bacon",
+                "price": 3.49,
+                "description": "Sweet maple glaze topped with crispy bacon bits.",
+                "toppings": ["maple glaze", "bacon bits"]
+            }
+        ];
+
+
+        function loadDonuts() {
+            let body = document.getElementById("tableBody");
+            donutData.forEach(function (donut) {
+                const row = document.createElement("tr");
+                let toppingText = donut.toppings[0];
+                for (let i = 1; i < donut.toppings.length; i++) {
+                    toppingText += ", " + donut.toppings[i];
+                }
+                row.innerHTML = `
+                    <td>${donut.name}</td>
+                    <td>${donut.price}</td>
+                    <td>${donut.description}</td>
+                    <td>${toppingText}</td>
+                `;
+                body.appendChild(row);
+            });
+        }
+    </script>
+</head>
+<body onload="loadDonuts()">
+
+
+<div class="container-fluid container2">
+    <h1>Books R U r</h1>
+    <p>This container spans the full width.</p>
+</div>
+<div class="container container1">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">Half width
+                <h1>Specials </h1>
+                <ol>
+                    <li>
+                        24 hour sale today
+                    </li>
+                    <li>
+                        50% Mystery Books
+                    </li>
+                </ol>
+            </div>
+            <div class="col-9">
+                <h1>Books For Sale</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
