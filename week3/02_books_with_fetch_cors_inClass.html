@@ -54,6 +54,9 @@
         row.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteBook(${book.id})">Delete ${book.id}</button>
+            </td>
         `;
         tBody.appendChild(row);
       })
@@ -62,6 +65,26 @@
     // Function to add a new book (demonstrates adding to existing data)
     function addSampleBook() {
 
+    }
+    function addNewBook() {
+      alert("start");
+    }
+    async function deleteBook(id) {
+      if (!confirm("Are you sure to want to delete id=" + id)) {
+        return;
+      }
+      const Delete_URL = `${Base_URL}/${id}`;
+      try {
+        const response = await fetch(`${Delete_URL}`, {
+          method: "DELETE"
+        });
+        await fetchBooks();
+        alert("Book is deleted");
+      }
+      catch (error) {
+        console.log(error);
+        alert("Delete Not Work");
+      }
     }
   </script>
 </head>
@@ -82,12 +105,65 @@
           <li>50% Mystery Books</li>
         </ol>
 
+        <div class="container">
+          <div class="row">
+            <!-- Add New Book Form -->
+            <div class="form-section">
+              <h3>Add New Book</h3>
+              <form id="addBookForm" onsubmit="event.preventDefault(); addNewBook();">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="bookTitle" class="form-label">Title *</label>
+                      <input type="text" class="form-control" id="bookTitle" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="bookAuthor" class="form-label">Author *</label>
+                      <input type="text" class="form-control" id="bookAuthor" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="bookPages" class="form-label">Pages</label>
+                      <input type="number" class="form-control" id="bookPages">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="bookType" class="form-label">Type</label>
+                      <select class="form-control" id="bookType">
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-fiction</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="science">Science</option>
+                        <option value="biography">Biography</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="bookYear" class="form-label">Year</label>
+                      <input type="number" class="form-control" id="bookYear" min="1000" max="2024">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Book</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <!-- Button to demonstrate dynamic functionality -->
         <button onclick="addSampleBook()" class="btn btn-success btn-sm mt-3">
           Add Sample Book
         </button>
       </div>
       <div class="col-9">
+
         <h1>Books For Sale</h1>
         <div class="table-responsive">
           <table class="table table-striped table-hover">
